@@ -26,7 +26,7 @@ function createSVG(textTemplate, username, { stylesFont, wordLengthWrap = 48, tr
 		/ /g,
 		'+'
 	)}:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap');
-	* { font: 600 18px ${stylesFont ? `"${stylesFont}", serif` : "'Segoe UI', Ubuntu, Sans-Serif"}"; }
+	* { font: 600 18px ${stylesFont.length > 3 ? `"${stylesFont}", serif;` : "'Segoe UI', Ubuntu, Sans-Serif;"}
 	</style>${!transparant ? '\n<rect width="420" height="100%" fill="white" />' : ''}
 	${wrappedText
 		.map(
@@ -43,7 +43,7 @@ function createSVG(textTemplate, username, { stylesFont, wordLengthWrap = 48, tr
 router.get('/:slug', async (ctx) => {
 	const getUsername = ctx.params.slug;
 	const urlFetchQuoted = `https://raw.githubusercontent.com/${getUsername}/${getUsername}/refs/heads/main/quoted.txt`;
-	const fontStyle = ctx.query.get('font') || 'Balsamiq Sans';
+	const fontStyle = ctx.query.get('font') || '';
 
 	try {
 		const dataFetch = await fetch(urlFetchQuoted);
