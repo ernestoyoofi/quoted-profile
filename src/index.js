@@ -26,8 +26,8 @@ function createSVG(textTemplate, username, { stylesFont, wordLengthWrap = 48, tr
 		/ /g,
 		'+'
 	)}:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap');
-	* { font: 600 18px "${stylesFont}", serif; }
-	</style>${transparant ? '\n<rect width="420" height="100%" fill="white" />' : ''}
+	* { font: 600 18px ${stylesFont ? `"${stylesFont}", serif` : "'Segoe UI', Ubuntu, Sans-Serif"}"; }
+	</style>${!transparant ? '\n<rect width="420" height="100%" fill="white" />' : ''}
 	${wrappedText
 		.map(
 			(a, i) =>
